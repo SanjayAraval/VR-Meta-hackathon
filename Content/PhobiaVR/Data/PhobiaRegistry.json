@@ -1,0 +1,875 @@
+{
+  "version": "2.0.0",
+  "title": "PhobiaVR Universal Phobia Simulation Matrix",
+  "total_catalogued_phobias": 86,
+  "categories": [
+    "Environmental",
+    "Biological",
+    "Somatic",
+    "Psychological",
+    "Kinetic",
+    "Existential"
+  ],
+  "phobias": [
+    {
+      "id": "ablutophobia",
+      "name": "Ablutophobia",
+      "definition": "Fear of bathing or washing",
+      "category": "Somatic",
+      "audio": "A_PanicSuffocation",
+      "lighting": "Flickering_Cold_Bathroom",
+      "physics": "Water_Volume_Buoyancy",
+      "trigger": "Drowning in locked enclosure"
+    },
+    {
+      "id": "achluophobia",
+      "name": "Achluophobia / Nyctophobia",
+      "definition": "Fear of darkness",
+      "category": "Environmental",
+      "audio": "A_Nyctophobia_Whispering_Dark",
+      "lighting": "Absolute_Black_ZeroLux",
+      "physics": "Flickering_Lighter_Physics",
+      "trigger": "Fingernails scratching in dark"
+    },
+    {
+      "id": "acrophobia",
+      "name": "Acrophobia",
+      "definition": "Fear of heights",
+      "category": "Kinetic",
+      "audio": "A_Vertigo_Abyss_Wind",
+      "lighting": "Night_Storm_Abyss",
+      "physics": "Plunging_Gravity_Tumbling",
+      "trigger": "80th floor vertigo plank drop"
+    },
+    {
+      "id": "aerophobia",
+      "name": "Aerophobia",
+      "definition": "Fear of flying",
+      "category": "Kinetic",
+      "audio": "A_Cable_Snap_Crash",
+      "lighting": "Turbulence_Emergency_Strobe",
+      "physics": "Severe_Cabin_GForce_Shudder",
+      "trigger": "Catastrophic mid-air depressurization"
+    },
+    {
+      "id": "algophobia",
+      "name": "Algophobia",
+      "definition": "Fear of pain",
+      "category": "Somatic",
+      "audio": "A_Tachycardia_Suffocation",
+      "lighting": "Sterile_Surgical_Red",
+      "physics": "Sharp_Needle_Impulse",
+      "trigger": "Surgical sensory overload"
+    },
+    {
+      "id": "agoraphobia",
+      "name": "Agoraphobia",
+      "definition": "Fear of open spaces or crowds",
+      "category": "Psychological",
+      "audio": "A_Horror_Drone_Ominous",
+      "lighting": "Overwhelming_Expansive_Void",
+      "physics": "Boundless_Horizon_Parallax",
+      "trigger": "Endless desolate desert abyss"
+    },
+    {
+      "id": "aichmophobia",
+      "name": "Aichmophobia / Trypanophobia",
+      "definition": "Fear of needles or pointed objects",
+      "category": "Somatic",
+      "audio": "A_Jumpscare_Violin_Shriek",
+      "lighting": "Harsh_Clinical_OperatingSpot",
+      "physics": "Looming_Pointed_Syringes",
+      "trigger": "Giant swinging pointed scalpels"
+    },
+    {
+      "id": "amaxophobia",
+      "name": "Amaxophobia",
+      "definition": "Fear of riding in a car",
+      "category": "Kinetic",
+      "audio": "A_Cable_Snap_Crash",
+      "lighting": "Blinding_Headlight_Glairs",
+      "physics": "High_Velocity_Impact_Ragdoll",
+      "trigger": "Imminent high-speed head-on collision"
+    },
+    {
+      "id": "androphobia",
+      "name": "Androphobia",
+      "definition": "Fear of men",
+      "category": "Psychological",
+      "audio": "A_Whispers_Paranoia_Loop",
+      "lighting": "Aggressive_Silhouette_Shadows",
+      "physics": "Looming_Towering_Statues",
+      "trigger": "Surrounded by imposing male silhouettes"
+    },
+    {
+      "id": "anemophobia",
+      "name": "Anemophobia",
+      "definition": "Fear of air or wind drafts",
+      "category": "Environmental",
+      "audio": "A_Vertigo_Abyss_Wind",
+      "lighting": "Howling_Dust_Vortex",
+      "physics": "Violent_Wind_Drag_Aerodynamics",
+      "trigger": "Gale force vortex lifting props"
+    },
+    {
+      "id": "anginophobia",
+      "name": "Anginophobia",
+      "definition": "Fear of angina or choking",
+      "category": "Somatic",
+      "audio": "A_Tachycardia_Suffocation",
+      "lighting": "Constricting_Vignette_Pulse",
+      "physics": "Tightening_Collar_Physics",
+      "trigger": "Constricting airway simulation"
+    },
+    {
+      "id": "angrophobia",
+      "name": "Angrophobia",
+      "definition": "Fear of anger or outbursts",
+      "category": "Psychological",
+      "audio": "A_Jumpscare_Violin_Shriek",
+      "lighting": "Violent_Red_Screen_Flashes",
+      "physics": "Shattering_Thrown_Glass",
+      "trigger": "Sudden violent slamming doors"
+    },
+    {
+      "id": "anthrophobia",
+      "name": "Anthrophobia",
+      "definition": "Fear of flowers",
+      "category": "Biological",
+      "audio": "A_Horror_Drone_Ominous",
+      "lighting": "Eerie_Bioluminescent_Spores",
+      "physics": "Overgrowing_Creeping_Vines",
+      "trigger": "Alien carnivorous blooming flora"
+    },
+    {
+      "id": "anthropophobia",
+      "name": "Anthropophobia",
+      "definition": "Fear of people or society",
+      "category": "Psychological",
+      "audio": "A_Whispers_Paranoia_Loop",
+      "lighting": "Crowded_Subway_Shadows",
+      "physics": "Encroaching_Crowd_Collisions",
+      "trigger": "Hundreds of faceless strangers staring"
+    },
+    {
+      "id": "aphenphosmphobia",
+      "name": "Aphenphosmphobia / Haphephobia",
+      "definition": "Fear of being touched",
+      "category": "Psychological",
+      "audio": "A_Tachycardia_Suffocation",
+      "lighting": "Claustrophobic_Proximity_Red",
+      "physics": "Reaching_Shadow_Hands",
+      "trigger": "Phantom hands brushing player shoulders"
+    },
+    {
+      "id": "aquaphobia",
+      "name": "Aquaphobia / Hydrophobia",
+      "definition": "Fear of water",
+      "category": "Environmental",
+      "audio": "A_Thalassophobia_Abyss_Sonar",
+      "lighting": "Murky_Submerged_Depths",
+      "physics": "Rising_Water_Level_Physics",
+      "trigger": "Water rising above eye level in locked room"
+    },
+    {
+      "id": "arachibutyrophobia",
+      "name": "Arachibutyrophobia",
+      "definition": "Fear of peanut butter sticking to roof of mouth",
+      "category": "Somatic",
+      "audio": "A_Tachycardia_Suffocation",
+      "lighting": "Viscous_Amber_Goo_Chamber",
+      "physics": "Extreme_Viscous_Fluid_Drag",
+      "trigger": "Suffocating adhesive containment"
+    },
+    {
+      "id": "arachnophobia",
+      "name": "Arachnophobia",
+      "definition": "Fear of spiders",
+      "category": "Biological",
+      "audio": "A_Spider_Swarm_Frenzy",
+      "lighting": "Dim_Laboratory_Flicker",
+      "physics": "Hanging_Silk_Drops_Physics",
+      "trigger": "Face-level dangling spiders & tabletop swarm"
+    },
+    {
+      "id": "arithmophobia",
+      "name": "Arithmophobia",
+      "definition": "Fear of numbers",
+      "category": "Psychological",
+      "audio": "A_Horror_Drone_Ominous",
+      "lighting": "Chaotic_Numeric_Matrix_Glow",
+      "physics": "Cascading_Raining_Equations",
+      "trigger": "Suffocating spiral of flashing countdowns"
+    },
+    {
+      "id": "astraphobia",
+      "name": "Astraphobia / Tonitrophobia",
+      "definition": "Fear of thunder and lightning",
+      "category": "Environmental",
+      "audio": "A_Cable_Snap_Crash",
+      "lighting": "Blinding_Strobe_Lightning",
+      "physics": "Shockwave_Impulse_Props",
+      "trigger": "Deafening direct lightning strike"
+    },
+    {
+      "id": "astrophobia",
+      "name": "Astrophobia",
+      "definition": "Fear of outer space",
+      "category": "Environmental",
+      "audio": "A_Megalophobia_Titan_Drone",
+      "lighting": "Cold_Starlight_Empty_Cosmos",
+      "physics": "Zero_G_Floating_Into_Abyss",
+      "trigger": "Untethered spacewalk into black hole"
+    },
+    {
+      "id": "ataxophobia",
+      "name": "Ataxophobia",
+      "definition": "Fear of disorder or untidiness",
+      "category": "Psychological",
+      "audio": "A_Horror_Drone_Ominous",
+      "lighting": "Asymmetric_Chaotic_Flicker",
+      "physics": "Violent_Exploding_Debris_Mess",
+      "trigger": "Catastrophic room-wide debris collapse"
+    },
+    {
+      "id": "atelophobia",
+      "name": "Atelophobia",
+      "definition": "Fear of imperfection",
+      "category": "Psychological",
+      "audio": "A_Whispers_Paranoia_Loop",
+      "lighting": "Distorted_Symmetry_Glow",
+      "physics": "Fracturing_Flawless_Pillars",
+      "trigger": "Perfect architecture shattering in real-time"
+    },
+    {
+      "id": "atychiphobia",
+      "name": "Atychiphobia",
+      "definition": "Fear of failure",
+      "category": "Psychological",
+      "audio": "A_Whispers_Paranoia_Loop",
+      "lighting": "Spotlight_Of_Shame",
+      "physics": "Crumbling_Pedestal_Floor",
+      "trigger": "Floor dropping from beneath player"
+    },
+    {
+      "id": "automatonophobia",
+      "name": "Automatonophobia / Coulrophobia",
+      "definition": "Fear of human-like figures, mannequins, or clowns",
+      "category": "Psychological",
+      "audio": "A_Automaton_MusicBox_Creep",
+      "lighting": "Creepy_Carnival_Shadows",
+      "physics": "Twitching_Mannequin_Physics",
+      "trigger": "Mannequins moving closer when player looks away"
+    },
+    {
+      "id": "autophobia",
+      "name": "Autophobia",
+      "definition": "Fear of being alone",
+      "category": "Psychological",
+      "audio": "A_Nyctophobia_Whispering_Dark",
+      "lighting": "Solitary_Single_Bulb",
+      "physics": "Empty_Chairs_Floating",
+      "trigger": "Infinite empty halls with vanishing footsteps"
+    },
+    {
+      "id": "bacteriophobia",
+      "name": "Bacteriophobia / Mysophobia",
+      "definition": "Fear of bacteria and germs",
+      "category": "Biological",
+      "audio": "A_Spider_Swarm_Frenzy",
+      "lighting": "Ultraviolet_Blacklight_Glow",
+      "physics": "Microscopic_Spore_Clouds",
+      "trigger": "Glowing pathogen colonies spreading on skin"
+    },
+    {
+      "id": "barophobia",
+      "name": "Barophobia",
+      "definition": "Fear of gravity",
+      "category": "Kinetic",
+      "audio": "A_Megalophobia_Titan_Drone",
+      "lighting": "Inverted_Sky_Horizon",
+      "physics": "Reversed_Gravity_Freefall",
+      "trigger": "Gravity reversing: falling into the sky"
+    },
+    {
+      "id": "bathmophobia",
+      "name": "Bathmophobia / Climacophobia",
+      "definition": "Fear of stairs or steep slopes",
+      "category": "Kinetic",
+      "audio": "A_Vertigo_Abyss_Wind",
+      "lighting": "Infinite_Spiral_Abyss",
+      "physics": "Tumbling_Down_Steep_Stairs",
+      "trigger": "Infinite narrow staircase vanishing into void"
+    },
+    {
+      "id": "batrachophobia",
+      "name": "Batrachophobia",
+      "definition": "Fear of amphibians",
+      "category": "Biological",
+      "audio": "A_Spider_Swarm_Frenzy",
+      "lighting": "Swamp_Murk_Green",
+      "physics": "Jumping_Physics_Entities",
+      "trigger": "Swarming leaping toads in stagnant pool"
+    },
+    {
+      "id": "belonephobia",
+      "name": "Belonephobia",
+      "definition": "Fear of pins and needles",
+      "category": "Somatic",
+      "audio": "A_Jumpscare_Violin_Shriek",
+      "lighting": "Glinting_Metallic_Spikes",
+      "physics": "Falling_Needle_Rain",
+      "trigger": "Bed of needles descending from ceiling"
+    },
+    {
+      "id": "bibliophobia",
+      "name": "Bibliophobia",
+      "definition": "Fear of books",
+      "category": "Psychological",
+      "audio": "A_Whispers_Paranoia_Loop",
+      "lighting": "Haunted_Library_Lantern",
+      "physics": "Cascading_Falling_Bookshelves",
+      "trigger": "Towering bookshelves toppling in domino physics"
+    },
+    {
+      "id": "botanophobia",
+      "name": "Botanophobia / Pteridophobia",
+      "definition": "Fear of plants and ferns",
+      "category": "Biological",
+      "audio": "A_Horror_Drone_Ominous",
+      "lighting": "Overgrown_Jungle_Twilight",
+      "physics": "Constricting_Thorny_Vines",
+      "trigger": "Rapidly growing roots trapping limbs"
+    },
+    {
+      "id": "bromidrophobia",
+      "name": "Bromidrophobia / Osmophobia",
+      "definition": "Fear of bad smells or odors",
+      "category": "Somatic",
+      "audio": "A_Tachycardia_Suffocation",
+      "lighting": "Toxic_Yellow_Chemical_Mist",
+      "physics": "Billowing_Poison_Gas_Clouds",
+      "trigger": "Biohazard seal breach in toxic chamber"
+    },
+    {
+      "id": "cacophobia",
+      "name": "Cacophobia",
+      "definition": "Fear of ugliness or deformity",
+      "category": "Psychological",
+      "audio": "A_Jumpscare_Violin_Shriek",
+      "lighting": "Flickering_Morgue_Fluorescent",
+      "physics": "Distorted_Twitching_Flesh",
+      "trigger": "Monstrous distorted humanoid reveal"
+    },
+    {
+      "id": "catagelophobia",
+      "name": "Catagelophobia",
+      "definition": "Fear of being ridiculed",
+      "category": "Psychological",
+      "audio": "A_Whispers_Paranoia_Loop",
+      "lighting": "Mocking_Theater_Footlights",
+      "physics": "Thrown_Rotten_Objects",
+      "trigger": "Audience erupting into manic mocking laughter"
+    },
+    {
+      "id": "catoptrophobia",
+      "name": "Catoptrophobia",
+      "definition": "Fear of mirrors",
+      "category": "Psychological",
+      "audio": "A_Whispers_Paranoia_Loop",
+      "lighting": "Infinity_Mirror_Glow",
+      "physics": "Shattering_Mirror_Shards",
+      "trigger": "Mirror reflection moving with independent malice"
+    },
+    {
+      "id": "chionophobia",
+      "name": "Chionophobia",
+      "definition": "Fear of snow",
+      "category": "Environmental",
+      "audio": "A_Vertigo_Abyss_Wind",
+      "lighting": "Blinding_Whiteout_Blizzard",
+      "physics": "Avalanche_Snow_Burial",
+      "trigger": "Massive physics avalanche engulfing player"
+    },
+    {
+      "id": "chrometophobia",
+      "name": "Chrometophobia",
+      "definition": "Fear of spending money",
+      "category": "Psychological",
+      "audio": "A_Horror_Drone_Ominous",
+      "lighting": "Grimy_Bank_Vault_Gloom",
+      "physics": "Crushing_Gold_Bar_Collapse",
+      "trigger": "Drowning under mountains of falling coins"
+    },
+    {
+      "id": "chromophobia",
+      "name": "Chromophobia / Melanophobia",
+      "definition": "Fear of colors or black",
+      "category": "Psychological",
+      "audio": "A_Horror_Drone_Ominous",
+      "lighting": "Strobe_Saturated_Colors",
+      "physics": "Pulsing_Color_Walls",
+      "trigger": "Blinding saturation overload in white room"
+    },
+    {
+      "id": "chronomentrophobia",
+      "name": "Chronomentrophobia / Chronophobia",
+      "definition": "Fear of clocks and time passing",
+      "category": "Psychological",
+      "audio": "A_Horror_Drone_Ominous",
+      "lighting": "Towering_Clockwork_Gears",
+      "physics": "Crushing_Rotating_Cogs",
+      "trigger": "Gigantic grinding pendulum clockwork trap"
+    },
+    {
+      "id": "cibophobia",
+      "name": "Cibophobia",
+      "definition": "Fear of food",
+      "category": "Somatic",
+      "audio": "A_Tachycardia_Suffocation",
+      "lighting": "Rotten_Feast_Gloom",
+      "physics": "Maggot_Infested_Platters",
+      "trigger": "Decaying organic feast crawling with vermin"
+    },
+    {
+      "id": "claustrophobia",
+      "name": "Claustrophobia / Cleithrophobia",
+      "definition": "Fear of confined spaces or being trapped",
+      "category": "Somatic",
+      "audio": "A_Cable_Snap_Crash",
+      "lighting": "BloodRed_Emergency_Beacon",
+      "physics": "Collapsing_Ceiling_Walls",
+      "trigger": "Elevator cable snap and shrinking walls"
+    },
+    {
+      "id": "coulrophobia",
+      "name": "Coulrophobia",
+      "definition": "Fear of clowns",
+      "category": "Psychological",
+      "audio": "A_Automaton_MusicBox_Creep",
+      "lighting": "Derelict_Carnival_Tent",
+      "physics": "Jumping_Jack_In_Box",
+      "trigger": "Looming demonic clown with razor grin"
+    },
+    {
+      "id": "cyberphobia",
+      "name": "Cyberphobia / Technophobia",
+      "definition": "Fear of computers and AI",
+      "category": "Psychological",
+      "audio": "A_Horror_Drone_Ominous",
+      "lighting": "Rogue_Server_Matrix_Red",
+      "physics": "Whiplashing_Power_Cables",
+      "trigger": "Malevolent AI locking all doors and oxygen"
+    },
+    {
+      "id": "cynophobia",
+      "name": "Cynophobia",
+      "definition": "Fear of dogs",
+      "category": "Biological",
+      "audio": "A_Jumpscare_Violin_Shriek",
+      "lighting": "Dark_Alleyway_Rain",
+      "physics": "Charging_Hellhound_Physics",
+      "trigger": "Snarling rabid pack closing in"
+    },
+    {
+      "id": "daemonophobia",
+      "name": "Daemonophobia / Teraphobia",
+      "definition": "Fear of demons and monsters",
+      "category": "Existential",
+      "audio": "A_Horror_Drone_Ominous",
+      "lighting": "Brimstone_Hellfire_Glow",
+      "physics": "Floating_Demonic_Altar",
+      "trigger": "Horrific horned titan emerging from portal"
+    },
+    {
+      "id": "decidophobia",
+      "name": "Decidophobia",
+      "definition": "Fear of making decisions",
+      "category": "Psychological",
+      "audio": "A_Tachycardia_Suffocation",
+      "lighting": "Split_Fork_Road_Pointers",
+      "physics": "Collapsing_Timers_Floor",
+      "trigger": "Two doors: one safe, one fatal with 5s timer"
+    },
+    {
+      "id": "dementophobia",
+      "name": "Dementophobia",
+      "definition": "Fear of madness or insanity",
+      "category": "Psychological",
+      "audio": "A_Whispers_Paranoia_Loop",
+      "lighting": "Padded_Cell_Flicker",
+      "physics": "Non_Euclidean_Hallways",
+      "trigger": "Walls warping and tilting into impossible angles"
+    },
+    {
+      "id": "dendrophobia",
+      "name": "Dendrophobia",
+      "definition": "Fear of trees",
+      "category": "Biological",
+      "audio": "A_Horror_Drone_Ominous",
+      "lighting": "Haunted_Black_Forest",
+      "physics": "Swinging_Gnarled_Branches",
+      "trigger": "Sentient tree roots dragging player underground"
+    },
+    {
+      "id": "dentophobia",
+      "name": "Dentophobia",
+      "definition": "Fear of dentists",
+      "category": "Somatic",
+      "audio": "A_Jumpscare_Violin_Shriek",
+      "lighting": "High_Intensity_Dental_Lamp",
+      "physics": "Spinning_High_Speed_Drills",
+      "trigger": "Screaming surgical drill advancing towards face"
+    },
+    {
+      "id": "domatophobia",
+      "name": "Domatophobia / Ecophobia",
+      "definition": "Fear of houses",
+      "category": "Psychological",
+      "audio": "A_Whispers_Paranoia_Loop",
+      "lighting": "Creaky_Victorian_Corridor",
+      "physics": "Slamming_Doors_Windows",
+      "trigger": "House breathing and swallowing rooms"
+    },
+    {
+      "id": "dysmorphophobia",
+      "name": "Dysmorphophobia",
+      "definition": "Fear of deformity",
+      "category": "Psychological",
+      "audio": "A_Jumpscare_Violin_Shriek",
+      "lighting": "Funhouse_Warped_Mirror",
+      "physics": "Morphing_Mesh_Anomalies",
+      "trigger": "Avatar hands and limbs twisting grotesquely"
+    },
+    {
+      "id": "dystychiphobia",
+      "name": "Dystychiphobia",
+      "definition": "Fear of accidents",
+      "category": "Kinetic",
+      "audio": "A_Cable_Snap_Crash",
+      "lighting": "Hazard_Industrial_Warning",
+      "physics": "Crushing_Crane_Collapse",
+      "trigger": "Industrial crane dropping steel beams on player"
+    },
+    {
+      "id": "elurophobia",
+      "name": "Elurophobia",
+      "definition": "Fear of cats",
+      "category": "Biological",
+      "audio": "A_Spider_Swarm_Frenzy",
+      "lighting": "Shadowy_Feline_Eyes_Glow",
+      "physics": "Feral_Pounce_Physics",
+      "trigger": "Dozens of glowing predatory eyes stalking"
+    },
+    {
+      "id": "emetophobia",
+      "name": "Emetophobia",
+      "definition": "Fear of vomiting",
+      "category": "Somatic",
+      "audio": "A_Tachycardia_Suffocation",
+      "lighting": "Bile_Green_Fluorescent",
+      "physics": "Uncontrollable_Screen_Shakes",
+      "trigger": "Visceral gastrointestinal distress simulation"
+    },
+    {
+      "id": "enochlophobia",
+      "name": "Enochlophobia",
+      "definition": "Fear of crowds",
+      "category": "Psychological",
+      "audio": "A_Whispers_Paranoia_Loop",
+      "lighting": "Suffocating_Stadium_Lights",
+      "physics": "Dense_Crowd_Physics_Crush",
+      "trigger": "Human stampede pressing against player"
+    },
+    {
+      "id": "entomophobia",
+      "name": "Entomophobia / Insectophobia",
+      "definition": "Fear of insects",
+      "category": "Biological",
+      "audio": "A_Spider_Swarm_Frenzy",
+      "lighting": "Hive_Chamber_Gloom",
+      "physics": "Swarming_Wasps_Centipedes",
+      "trigger": "Thousands of centipedes raining from ceiling"
+    },
+    {
+      "id": "ephebiphobia",
+      "name": "Ephebiphobia / Pedophobia",
+      "definition": "Fear of teenagers or children",
+      "category": "Psychological",
+      "audio": "A_Automaton_MusicBox_Creep",
+      "lighting": "Abandoned_School_Lockers",
+      "physics": "Rattling_Locker_Doors",
+      "trigger": "Ghostly children standing in silent circle"
+    },
+    {
+      "id": "equinophobia",
+      "name": "Equinophobia",
+      "definition": "Fear of horses",
+      "category": "Biological",
+      "audio": "A_Cable_Snap_Crash",
+      "lighting": "Thunderstorm_Stable_Dark",
+      "physics": "Trampling_Hoof_Impacts",
+      "trigger": "Furious black stallion rearing directly overhead"
+    },
+    {
+      "id": "gamophobia",
+      "name": "Gamophobia / Philophobia",
+      "definition": "Fear of marriage or love",
+      "category": "Psychological",
+      "audio": "A_Horror_Drone_Ominous",
+      "lighting": "Crumbling_Altar_Candles",
+      "physics": "Shattering_Wedding_Cake",
+      "trigger": "Entangling gold chains dragging player down"
+    },
+    {
+      "id": "genuphobia",
+      "name": "Genuphobia / Podophobia",
+      "definition": "Fear of knees or feet",
+      "category": "Somatic",
+      "audio": "A_Horror_Drone_Ominous",
+      "lighting": "Low_Floor_Level_Footlights",
+      "physics": "Giant_Stomping_Limbs",
+      "trigger": "Towering disembodied feet marching"
+    },
+    {
+      "id": "glossophobia",
+      "name": "Glossophobia",
+      "definition": "Fear of speaking in public",
+      "category": "Psychological",
+      "audio": "A_Whispers_Paranoia_Loop",
+      "lighting": "Blinding_Spotlight_Glare",
+      "physics": "Scattering_Speech_Notes",
+      "trigger": "35 faceless shadow attendees judging in silence"
+    },
+    {
+      "id": "gynophobia",
+      "name": "Gynophobia",
+      "definition": "Fear of women",
+      "category": "Psychological",
+      "audio": "A_Whispers_Paranoia_Loop",
+      "lighting": "Dramatic_High_Contrast_Noir",
+      "physics": "Towering_Statue_Goddesses",
+      "trigger": "Intimidating crowd of statues coming to life"
+    },
+    {
+      "id": "heliophobia",
+      "name": "Heliophobia",
+      "definition": "Fear of the sun or sunlight",
+      "category": "Environmental",
+      "audio": "A_Horror_Drone_Ominous",
+      "lighting": "Blinding_Solar_Flare_Whiteout",
+      "physics": "Vaporizing_Dust_Embers",
+      "trigger": "Unshielded direct solar flare incineration"
+    },
+    {
+      "id": "hemophobia",
+      "name": "Hemophobia",
+      "definition": "Fear of blood",
+      "category": "Biological",
+      "audio": "A_Tachycardia_Suffocation",
+      "lighting": "Deep_Arterial_Crimson",
+      "physics": "Viscous_Blood_Pool_Flow",
+      "trigger": "Elevator filling with rising tide of blood"
+    },
+    {
+      "id": "herpetophobia",
+      "name": "Herpetophobia / Ophidiophobia",
+      "definition": "Fear of reptiles or snakes",
+      "category": "Biological",
+      "audio": "A_Spider_Swarm_Frenzy",
+      "lighting": "Viper_Pit_Torchlight",
+      "physics": "Slithering_Snake_Bodies",
+      "trigger": "Dropping into Indiana Jones-style snake pit"
+    },
+    {
+      "id": "hexakosioihexekontahexaphobia",
+      "name": "Hexakosioihexekontahexaphobia",
+      "definition": "Fear of the number 666",
+      "category": "Existential",
+      "audio": "A_Horror_Drone_Ominous",
+      "lighting": "Occult_Pentagram_Red",
+      "physics": "Inverted_Burning_Crucifix",
+      "trigger": "Blood-carved 666 blazing across all walls"
+    },
+    {
+      "id": "hippopotomonstrosesquipedaliophobia",
+      "name": "Hippopotomonstrosesquipedaliophobia",
+      "definition": "Fear of long words",
+      "category": "Psychological",
+      "audio": "A_Whispers_Paranoia_Loop",
+      "lighting": "Dizzying_Typography_Vortex",
+      "physics": "Falling_Monolithic_Letters",
+      "trigger": "Crushed by gigantic 30-letter 3D monolithic words"
+    },
+    {
+      "id": "iatrophobia",
+      "name": "Iatrophobia / Nosocomephobia",
+      "definition": "Fear of doctors or hospitals",
+      "category": "Somatic",
+      "audio": "A_Tachycardia_Suffocation",
+      "lighting": "Flickering_Asylum_Ward",
+      "physics": "Gurney_Crash_Collisions",
+      "trigger": "Strapped to runaway hospital gurney in dark"
+    },
+    {
+      "id": "koinoniphobia",
+      "name": "Koinoniphobia",
+      "definition": "Fear of rooms",
+      "category": "Psychological",
+      "audio": "A_Horror_Drone_Ominous",
+      "lighting": "Endless_Repetitive_Cubicles",
+      "physics": "Collapsing_Ceiling_Grid",
+      "trigger": "Infinite labyrinth of identical locked rooms"
+    },
+    {
+      "id": "koumpounophobia",
+      "name": "Koumpounophobia",
+      "definition": "Fear of buttons on clothing",
+      "category": "Psychological",
+      "audio": "A_Spider_Swarm_Frenzy",
+      "lighting": "Macro_Needlework_Gloom",
+      "physics": "Avalanche_Of_Buttons",
+      "trigger": "Drowning in millions of clattering buttons"
+    },
+    {
+      "id": "lilapsophobia",
+      "name": "Lilapsophobia",
+      "definition": "Fear of tornadoes and hurricanes",
+      "category": "Environmental",
+      "audio": "A_Vertigo_Abyss_Wind",
+      "lighting": "Black_Funnel_Cloud_Twister",
+      "physics": "Roofs_Ripping_Off_Houses",
+      "trigger": "F5 tornado tearing walls away in real-time"
+    },
+    {
+      "id": "megalophobia",
+      "name": "Megalophobia",
+      "definition": "Fear of colossal, gargantuan objects",
+      "category": "Environmental",
+      "audio": "A_Megalophobia_Titan_Drone",
+      "lighting": "Colossal_Shadow_Eclipse",
+      "physics": "Towering_Monolith_Physics",
+      "trigger": "Kilometer-tall monolith towering directly over player"
+    },
+    {
+      "id": "microphobia",
+      "name": "Microphobia",
+      "definition": "Fear of extremely small things",
+      "category": "Psychological",
+      "audio": "A_Spider_Swarm_Frenzy",
+      "lighting": "Microscopic_Electron_Beam",
+      "physics": "Billions_Of_Nano_Particles",
+      "trigger": "Shrunk to insect scale surrounded by dust mites"
+    },
+    {
+      "id": "necrophobia",
+      "name": "Necrophobia",
+      "definition": "Fear of death or dead things",
+      "category": "Existential",
+      "audio": "A_Horror_Drone_Ominous",
+      "lighting": "Cold_Morgue_Stainless_Steel",
+      "physics": "Rising_Corpse_Gurneys",
+      "trigger": "Morgue body bags unzipping from inside"
+    },
+    {
+      "id": "nomophobia",
+      "name": "Nomophobia",
+      "definition": "Fear of being without your phone",
+      "category": "Psychological",
+      "audio": "A_Tachycardia_Suffocation",
+      "lighting": "Dying_1Percent_Battery_Red",
+      "physics": "Shattering_Phone_Screens",
+      "trigger": "Phone dying at 1% while lost in dark woods"
+    },
+    {
+      "id": "octophobia",
+      "name": "Octophobia",
+      "definition": "Fear of the figure 8",
+      "category": "Psychological",
+      "audio": "A_Horror_Drone_Ominous",
+      "lighting": "Infinite_Mobius_Loop_Glow",
+      "physics": "Twisting_Infinity_Ribbon",
+      "trigger": "Trapped on infinite roller coaster figure-8 loop"
+    },
+    {
+      "id": "ombrophobia",
+      "name": "Ombrophobia",
+      "definition": "Fear of torrential rain",
+      "category": "Environmental",
+      "audio": "A_Vertigo_Abyss_Wind",
+      "lighting": "Torrential_Monsoon_Night",
+      "physics": "Rising_Floodwaters_Physics",
+      "trigger": "Flash flood smashing through windows"
+    },
+    {
+      "id": "ommetaphobia",
+      "name": "Ommetaphobia / Scoptophobia",
+      "definition": "Fear of eyes or being stared at",
+      "category": "Psychological",
+      "audio": "A_Whispers_Paranoia_Loop",
+      "lighting": "Blinking_Occult_Ocular_Glow",
+      "physics": "Floating_Giant_Eyeballs",
+      "trigger": "Hundreds of giant hyperrealistic eyes opening on walls"
+    },
+    {
+      "id": "pyrophobia",
+      "name": "Pyrophobia",
+      "definition": "Fear of fire and burns",
+      "category": "Environmental",
+      "audio": "A_Cable_Snap_Crash",
+      "lighting": "Raging_Inferno_Orange_Red",
+      "physics": "Falling_Burning_Timbers",
+      "trigger": "Surrounded by spreading ring of roaring flames"
+    },
+    {
+      "id": "siderodromophobia",
+      "name": "Siderodromophobia",
+      "definition": "Fear of trains and railways",
+      "category": "Kinetic",
+      "audio": "A_Cable_Snap_Crash",
+      "lighting": "Blinding_Train_Locomotive_Beam",
+      "physics": "Runaway_Freight_Train_Speed",
+      "trigger": "Tied to tracks with oncoming roaring steam train"
+    },
+    {
+      "id": "thalassophobia",
+      "name": "Thalassophobia",
+      "definition": "Fear of the deep open ocean and marine abyss",
+      "category": "Environmental",
+      "audio": "A_Thalassophobia_Abyss_Sonar",
+      "lighting": "Midnight_Ocean_Zone_Void",
+      "physics": "Subaquatic_Pressure_Buoyancy",
+      "trigger": "Treading water 5000m deep as leviathan passes below"
+    },
+    {
+      "id": "trypophobia",
+      "name": "Trypophobia",
+      "definition": "Fear of irregular patterns of small clustered holes",
+      "category": "Biological",
+      "audio": "A_Spider_Swarm_Frenzy",
+      "lighting": "Organic_Porous_Flesh_Lamp",
+      "physics": "Creeping_Hole_Clusters",
+      "trigger": "Clustered honeycomb holes opening on hands and walls"
+    },
+    {
+      "id": "xanthophobia",
+      "name": "Xanthophobia",
+      "definition": "Fear of the color yellow",
+      "category": "Psychological",
+      "audio": "A_Horror_Drone_Ominous",
+      "lighting": "Nauseating_Sodium_Vapor_Yellow",
+      "physics": "Flooding_Yellow_Paint",
+      "trigger": "The Backrooms infinite fluorescent yellow maze"
+    },
+    {
+      "id": "zuigerphobia",
+      "name": "Zuigerphobia",
+      "definition": "Fear of loud vacuum cleaners and deafening noise",
+      "category": "Somatic",
+      "audio": "A_Cable_Snap_Crash",
+      "lighting": "Deafening_Vibrating_Strobe",
+      "physics": "Suction_Vortex_Pulling_Objects",
+      "trigger": "Giant industrial suction engine consuming the room"
+    }
+  ]
+}

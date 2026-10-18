@@ -1,0 +1,23 @@
+# Unreal Engine standard .gitignore
+Binaries/
+Build/
+DerivedDataCache/
+Intermediate/
+Saved/
+
+# Visual Studio / IDE temporary files
+.vs/
+.vscode/
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+
+# Python byte-code / cache
+__pycache__/
+*.pyc
+Scripts/__pycache__/
+
+# OS generated files
+.DS_Store
+Thumbs.db
