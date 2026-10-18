@@ -1,0 +1,118 @@
+{
+  "gamemode": {
+    "pawn_class": "<Object '/Game/XRFramework/Blueprints/BP_XRPawn.BP_XRPawn_C' (0x0000019EBDC3BD00) Class 'BlueprintGeneratedClass'>"
+  },
+  "audio_looping": {
+    "A_Audience_Murmur_Loop": false,
+    "A_Automaton_MusicBox_Creep": true,
+    "A_Cable_Snap_Crash": false,
+    "A_Elevator_Stall_Groan": false,
+    "A_Heartbeat_Pulse_Cue": false,
+    "A_Horror_Drone_Ominous": true,
+    "A_Jumpscare_Violin_Shriek": false,
+    "A_Megalophobia_Titan_Drone": true,
+    "A_Nyctophobia_Whispering_Dark": true,
+    "A_Spider_Skitter_Cue": false,
+    "A_Spider_Swarm_Frenzy": true,
+    "A_Tachycardia_Suffocation": true,
+    "A_Thalassophobia_Abyss_Sonar": true,
+    "A_Vertigo_Abyss_Wind": true,
+    "A_Whispers_Paranoia_Loop": true,
+    "A_Wind_HighAltitude_Loop": false,
+    "A_ZenChime_Safe": true
+  },
+  "levels": {
+    "L_PhobiaClinicHub": {
+      "total_actors": 36,
+      "player_start_count": 1,
+      "player_start_locations": [
+        "<Struct 'Vector' (0x0000019E5C57AEA0) {x: 0.000000, y: 0.000000, z: 30.000000}>"
+      ],
+      "ambient_sounds": [
+        "Audio_ZenChime (Sound: A_ZenChime_Safe)"
+      ],
+      "physics_actors_count": 0,
+      "missing_mesh_count": 0,
+      "missing_mesh_actors": []
+    },
+    "L_Sim_Acrophobia": {
+      "total_actors": 36,
+      "player_start_count": 1,
+      "player_start_locations": [
+        "<Struct 'Vector' (0x0000019E5C508D30) {x: 0.000000, y: 250.000000, z: 20020.000000}>"
+      ],
+      "ambient_sounds": [
+        "Audio_VertigoAbyssWind (Sound: A_Vertigo_Abyss_Wind)",
+        "Audio_HorrorDrone (Sound: A_Horror_Drone_Ominous)",
+        "Audio_PlankEdgeStinger (Sound: A_Jumpscare_Violin_Shriek)"
+      ],
+      "physics_actors_count": 6,
+      "missing_mesh_count": 0,
+      "missing_mesh_actors": []
+    },
+    "L_Sim_Claustrophobia": {
+      "total_actors": 19,
+      "player_start_count": 1,
+      "player_start_locations": [
+        "<Struct 'Vector' (0x0000019E5C508600) {x: 0.000000, y: 0.000000, z: 20.000000}>"
+      ],
+      "ambient_sounds": [
+        "Audio_CableSnapCrash (Sound: A_Cable_Snap_Crash)",
+        "Audio_PanicSuffocation (Sound: A_Tachycardia_Suffocation)",
+        "Audio_ShaftWhispers (Sound: A_Whispers_Paranoia_Loop)"
+      ],
+      "physics_actors_count": 4,
+      "missing_mesh_count": 0,
+      "missing_mesh_actors": []
+    },
+    "L_Sim_Arachnophobia": {
+      "total_actors": 71,
+      "player_start_count": 1,
+      "player_start_locations": [
+        "<Struct 'Vector' (0x0000019E5C508380) {x: 0.000000, y: 0.000000, z: 20.000000}>"
+      ],
+      "ambient_sounds": [
+        "Audio_SpiderSwarmFrenzy (Sound: A_Spider_Swarm_Frenzy)",
+        "Audio_LabDreadDrone (Sound: A_Horror_Drone_Ominous)",
+        "Audio_TerrariumStinger (Sound: A_Jumpscare_Violin_Shriek)"
+      ],
+      "physics_actors_count": 3,
+      "missing_mesh_count": 0,
+      "missing_mesh_actors": []
+    },
+    "L_Sim_Glossophobia": {
+      "total_actors": 88,
+      "player_start_count": 1,
+      "player_start_locations": [
+        "<Struct 'Vector' (0x0000019E5C5087E0) {x: 0.000000, y: 60.000000, z: 20.000000}>"
+      ],
+      "ambient_sounds": [
+        "Audio_ParanoiaWhispers (Sound: A_Whispers_Paranoia_Loop)",
+        "Audio_StagePanicHeartbeat (Sound: A_Tachycardia_Suffocation)",
+        "Audio_NightmareDrone (Sound: A_Horror_Drone_Ominous)"
+      ],
+      "physics_actors_count": 4,
+      "missing_mesh_count": 0,
+      "missing_mesh_actors": []
+    },
+    "L_Sim_Holochamber": {
+      "total_actors": 30,
+      "player_start_count": 1,
+      "player_start_locations": [
+        "<Struct 'Vector' (0x0000019E5C508790) {x: 0.000000, y: 0.000000, z: 30.000000}>"
+      ],
+      "ambient_sounds": [
+        "Audio_Thalassophobia (Sound: A_Thalassophobia_Abyss_Sonar)",
+        "Audio_MusicBox (Sound: A_Automaton_MusicBox_Creep)",
+        "Audio_TitanDrone (Sound: A_Megalophobia_Titan_Drone)",
+        "Audio_DarknessWhispers (Sound: A_Nyctophobia_Whispering_Dark)",
+        "Audio_Matrix_Background (Sound: A_Horror_Drone_Ominous)"
+      ],
+      "physics_actors_count": 3,
+      "missing_mesh_count": 0,
+      "missing_mesh_actors": []
+    }
+  },
+  "issues_found": [],
+  "fixes_applied": []
+}
