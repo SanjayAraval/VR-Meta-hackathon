@@ -54,6 +54,7 @@ def save_current_level():
 def spawn_sm(mesh_path, loc, rot=unreal.Rotator(0,0,0), scale=unreal.Vector(1,1,1), mat=None, label=None, sim_physics=False, mass_kg=0.0):
     mesh_asset = unreal.EditorAssetLibrary.load_asset(mesh_path)
     if not mesh_asset:
+        unreal.log_warning(f"Mesh not found: {mesh_path}")
         return None
     actor = editor_actor_subsystem.spawn_actor_from_class(unreal.StaticMeshActor, loc, rot)
     if actor:
@@ -142,7 +143,7 @@ def upgrade_acrophobia():
 
     tower_z = 20000.0 # 200 meters elevation
     
-    # Night Storm Directional Light (Blood moon / stormy moonlight)
+    # Night Storm Directional Light (Moonlight)
     sun_actor = editor_actor_subsystem.spawn_actor_from_class(unreal.DirectionalLight, unreal.Vector(0,0,tower_z + 1000), unreal.Rotator(-40.0, 190.0, 0))
     if sun_actor:
         sun_actor.set_actor_label("Storm_Moonlight")
@@ -155,7 +156,7 @@ def upgrade_acrophobia():
     editor_actor_subsystem.spawn_actor_from_class(unreal.SkyAtmosphere, unreal.Vector(0,0,0), unreal.Rotator(0,0,0))
     editor_actor_subsystem.spawn_actor_from_class(unreal.SkyLight, unreal.Vector(0,0,tower_z), unreal.Rotator(0,0,0))
     
-    # Sinister dark blue / purple abyssal fog
+    # Abyssal fog
     fog = editor_actor_subsystem.spawn_actor_from_class(unreal.ExponentialHeightFog, unreal.Vector(0,0,0), unreal.Rotator(0,0,0))
     if fog:
         fog.set_actor_label("Abyss_HeightFog")
@@ -163,8 +164,8 @@ def upgrade_acrophobia():
         if fc:
             fc.set_editor_property("fog_density", 0.04)
 
-    # 1. Tower Core
-    spawn_sm("/Game/Building/Geometry/SM_Land", unreal.Vector(0, 0, tower_z / 2), scale=unreal.Vector(2.0, 2.0, 40.0), mat="/Game/Building/Materials/MI_StdOpaque_Concrete", label="Skyscraper_Core")
+    # 1. Tower Core (FIX: Z-scale is tower_z / 100.0 to span full 200m from Z=0 to Z=tower_z)
+    spawn_sm("/Game/Building/Geometry/SM_Land", unreal.Vector(0, 0, tower_z / 2), scale=unreal.Vector(2.0, 2.0, tower_z / 100.0), mat="/Game/Building/Materials/MI_StdOpaque_Concrete", label="Skyscraper_Core")
 
     # 2. Rooftop Platform & Dilapidated Wall
     spawn_sm("/Game/Geometry/Meshes/TemplateFloor", unreal.Vector(0, 300, tower_z), scale=unreal.Vector(1.5, 1.5, 1.0), mat="/Game/Building/Materials/MI_StdOpaque_Concrete_Ground", label="Rooftop_Floor")
@@ -180,8 +181,7 @@ def upgrade_acrophobia():
     spawn_sm("/Game/Geometry/Meshes/1M_Cube", unreal.Vector(0, -300, tower_z - 5), scale=unreal.Vector(0.36, 6.0, 0.1), mat="/Game/Building/Materials/MI_StdOpaque_Brushed", label="The_Vertigo_Plank")
     spawn_sm("/Game/Geometry/Meshes/1M_Cube_Chamfer", unreal.Vector(0, -600, tower_z), scale=unreal.Vector(0.5, 0.5, 0.1), mat="/Game/XRFramework/Materials/MI_Grid_Accent", label="Plank_Tip_Platform")
 
-    # 5. REAL PHYSICS DROP PROPS (Physics enabled, gravity enabled, high mass)
-    # The user can push, grab, or kick these off the rooftop and watch them plummet 200m!
+    # 5. REAL PHYSICS DROP PROPS (FIX: Replaced SM_SphereSky with collision-enabled /Engine/BasicShapes/Sphere)
     drop_props = [
         # Paint cans on the edge
         ("/Game/Geometry/Meshes/1M_Cube_Chamfer", unreal.Vector(-50, 20, tower_z + 20), unreal.Vector(0.25, 0.25, 0.35), 4.5, "Phys_PaintCan_Edge1"),
@@ -191,9 +191,9 @@ def upgrade_acrophobia():
         # Loose concrete cinderblocks balanced on the plank and edge
         ("/Game/Geometry/Meshes/1M_Cube", unreal.Vector(0, -100, tower_z + 15), unreal.Vector(0.2, 0.35, 0.15), 18.0, "Phys_CinderBlock_Plank"),
         ("/Game/Geometry/Meshes/1M_Cube", unreal.Vector(-15, -450, tower_z + 15), unreal.Vector(0.15, 0.25, 0.12), 14.0, "Phys_CinderBlock_PlankTip"),
-        # Rolling physics pipes/spheres that roll into the void when touched
-        ("/Game/Building/Geometry/SM_SphereSky", unreal.Vector(-30, 50, tower_z + 25), unreal.Vector(0.0004, 0.0004, 0.0004), 2.0, "Phys_RollingSphere_Edge1"),
-        ("/Game/Building/Geometry/SM_SphereSky", unreal.Vector(30, -50, tower_z + 25), unreal.Vector(0.0003, 0.0003, 0.0003), 1.5, "Phys_RollingSphere_Edge2"),
+        # Rolling physics spheres (Engine BasicShape with true physics collision)
+        ("/Engine/BasicShapes/Sphere", unreal.Vector(-30, 50, tower_z + 25), unreal.Vector(0.35, 0.35, 0.35), 2.0, "Phys_RollingSphere_Edge1"),
+        ("/Engine/BasicShapes/Sphere", unreal.Vector(30, -50, tower_z + 25), unreal.Vector(0.28, 0.28, 0.28), 1.5, "Phys_RollingSphere_Edge2"),
         # Scaffolding Timber Plank balanced over the abyss
         ("/Game/Geometry/Meshes/1M_Cube", unreal.Vector(-80, -50, tower_z + 10), unreal.Vector(0.25, 2.2, 0.06), 9.0, "Phys_TeeteringPlank_Edge")
     ]
@@ -208,7 +208,7 @@ def upgrade_acrophobia():
     spawn_pl(unreal.Vector(-340, 580, tower_z + 300), intensity=6000.0, color=unreal.LinearColor(1.0, 0.05, 0.02, 1.0), radius=500.0, label="AviationBeacon_Left")
     spawn_pl(unreal.Vector(340, 580, tower_z + 300), intensity=6000.0, color=unreal.LinearColor(1.0, 0.05, 0.02, 1.0), radius=500.0, label="AviationBeacon_Right")
 
-    # 8. Distant Cityscape with eerie dark silhouettes
+    # 8. Distant Cityscape with realistic skyscraper scales (FIX: tz / 100.0 for full height)
     spawn_sm("/Game/Building/Geometry/SM_Land", unreal.Vector(0, -1000, 0), scale=unreal.Vector(30.0, 30.0, 1.0), mat="/Game/Building/Materials/MI_Road", label="City_Ground_Plane")
     tower_coords = [
         (-2500, -2000, 12000), (2800, -2400, 14000),
@@ -216,16 +216,16 @@ def upgrade_acrophobia():
         (-1500, -4500, 9000), (1200, -5000, 13000),
     ]
     for idx, (tx, ty, tz) in enumerate(tower_coords):
-        spawn_sm("/Game/Building/Geometry/SM_Land", unreal.Vector(tx, ty, tz / 2), scale=unreal.Vector(1.2, 1.2, tz / 1000.0), mat="/Game/Building/Materials/MI_StdOpaque_Concrete", label=f"Distant_Tower_{idx+1}")
+        spawn_sm("/Game/Building/Geometry/SM_Land", unreal.Vector(tx, ty, tz / 2), scale=unreal.Vector(1.2, 1.2, tz / 100.0), mat="/Game/Building/Materials/MI_StdOpaque_Concrete", label=f"Distant_Tower_{idx+1}")
 
-    # 9. Terrifying Eerie Audio Suite (Shepard Vertigo Wind + Horror Drone + Shock Stinger)
+    # 9. Audio Suite
     spawn_snd("/Game/PhobiaVR/Audio/A_Vertigo_Abyss_Wind", unreal.Vector(0, -300, tower_z + 100), vol=1.0, label="Audio_VertigoAbyssWind")
     spawn_snd("/Game/PhobiaVR/Audio/A_Horror_Drone_Ominous", unreal.Vector(0, 0, tower_z + 50), vol=0.85, label="Audio_HorrorDrone")
     spawn_snd("/Game/PhobiaVR/Audio/A_Jumpscare_Violin_Shriek", unreal.Vector(0, -600, tower_z + 50), vol=0.75, label="Audio_PlankEdgeStinger")
 
     spawn_ps(unreal.Vector(0, 250, tower_z + 20), unreal.Rotator(0, -90, 0))
     save_current_level()
-    print("Acrophobia level rebuilt with tumbling physics & eerie terror ambiance.")
+    print("Acrophobia level rebuilt with fixed tower scaling & true physics rolling spheres.")
 
 # ==============================================================================
 # 2. CLAUSTROPHOBIA: VIOLENT CABLE SNAP, SHAKING CABIN & SUFFOCATION PANIC
@@ -243,36 +243,33 @@ def upgrade_claustrophobia():
     spawn_sm("/Game/Building/Geometry/SM_Wall", unreal.Vector(110, 0, 120), rot=unreal.Rotator(0, -90, 0), scale=unreal.Vector(0.55, 0.5, 1.2), mat="/Game/Building/Materials/MI_StdOpaque_Brushed", label="Elevator_Wall_Right")
     spawn_sm("/Game/Geometry/Meshes/TemplateFloor", unreal.Vector(0, 0, 230), scale=unreal.Vector(0.45, 0.45, 0.2), mat="/Game/Building/Materials/MI_StdOpaque_Brushed", label="Elevator_Ceiling")
 
-    # 2. Control Panel with jammed buttons
+    # 2. Control Panel
     spawn_sm("/Game/Geometry/Meshes/1M_Cube_Chamfer", unreal.Vector(95, -20, 110), scale=unreal.Vector(0.05, 0.2, 0.5), mat="/Game/XRFramework/Materials/MI_Grid_Accent", label="Elevator_Control_Panel")
 
-    # 3. REAL PHYSICS LOOSE ITEMS INSIDE CABIN
-    # When the elevator drops or shudders, these items get kicked and bounce on the floor!
+    # 3. REAL PHYSICS LOOSE ITEMS INSIDE CABIN (FIX: Replaced SM_SphereSky with Cylinder for soda can)
     spawn_sm("/Game/Geometry/Meshes/1M_Cube", unreal.Vector(30, 40, 15), scale=unreal.Vector(0.12, 0.35, 0.08), mat="/Game/Building/Materials/MI_Simple_Chrome", label="Phys_HeavyWrench", sim_physics=True, mass_kg=3.0)
     spawn_sm("/Game/Geometry/Meshes/1M_Cube_Chamfer", unreal.Vector(-40, 30, 15), scale=unreal.Vector(0.15, 0.15, 0.25), mat="/Game/Building/Materials/MI_StdOpaque_Brushed", label="Phys_EmergencyFlashlight", sim_physics=True, mass_kg=1.2)
     spawn_sm("/Game/Geometry/Meshes/1M_Cube", unreal.Vector(50, -40, 10), scale=unreal.Vector(0.25, 0.35, 0.02), mat="/Game/Building/Materials/MI_StdOpaque_Concrete", label="Phys_Clipboard_Dropped", sim_physics=True, mass_kg=0.6)
-    spawn_sm("/Game/Building/Geometry/SM_SphereSky", unreal.Vector(-30, -30, 15), scale=unreal.Vector(0.0002, 0.0002, 0.0002), mat="/Game/Building/Materials/MI_Simple_Chrome", label="Phys_RollingSodaCan", sim_physics=True, mass_kg=0.35)
+    spawn_sm("/Engine/BasicShapes/Cylinder", unreal.Vector(-30, -30, 15), scale=unreal.Vector(0.08, 0.08, 0.14), mat="/Game/Building/Materials/MI_Simple_Chrome", label="Phys_RollingSodaCan", sim_physics=True, mass_kg=0.35)
 
-    # 4. Falling Ceiling Grates & Debris (Dislodged when cable snaps)
+    # 4. Falling Ceiling Grates & Debris
     spawn_sm("/Game/Geometry/Meshes/1M_Cube", unreal.Vector(0, 10, 215), scale=unreal.Vector(0.35, 0.35, 0.04), mat="/Game/Building/Materials/MI_StdOpaque_Brushed", label="Phys_CeilingPanel_Loose", sim_physics=True, mass_kg=5.0)
 
     # 5. Terrifying Emergency Strobe & Pitch Black Shaft
-    spawn_point_light = spawn_pl
-    spawn_point_light(unreal.Vector(0, 0, 215), intensity=300.0, color=unreal.LinearColor(0.2, 0.2, 0.2, 1.0), radius=200.0, label="Light_FailingOverhead")
-    # Blood-red flashing emergency beacon
-    spawn_point_light(unreal.Vector(70, -20, 205), intensity=5000.0, color=unreal.LinearColor(1.0, 0.02, 0.01, 1.0), radius=350.0, label="Light_EmergencyBeacon_BloodRed")
+    spawn_pl(unreal.Vector(0, 0, 215), intensity=300.0, color=unreal.LinearColor(0.2, 0.2, 0.2, 1.0), radius=200.0, label="Light_FailingOverhead")
+    spawn_pl(unreal.Vector(70, -20, 205), intensity=5000.0, color=unreal.LinearColor(1.0, 0.02, 0.01, 1.0), radius=350.0, label="Light_EmergencyBeacon_BloodRed")
 
     # Shaft below and above
     spawn_sm("/Game/Building/Geometry/SM_Land", unreal.Vector(0, 0, -800), scale=unreal.Vector(1.0, 1.0, 25.0), mat="/Game/Building/Materials/MI_StdOpaque_Concrete", label="Elevator_Shaft_Void")
 
-    # 6. Eerie Horror Audio Suite: Catastrophic Cable Snap, Freefall Crash & Tachycardia Suffocation
+    # 6. Audio Suite
     spawn_snd("/Game/PhobiaVR/Audio/A_Cable_Snap_Crash", unreal.Vector(0, 0, 225), vol=1.0, label="Audio_CableSnapCrash")
     spawn_snd("/Game/PhobiaVR/Audio/A_Tachycardia_Suffocation", unreal.Vector(0, 0, 120), vol=0.95, label="Audio_PanicSuffocation")
     spawn_snd("/Game/PhobiaVR/Audio/A_Whispers_Paranoia_Loop", unreal.Vector(0, -110, 120), vol=0.6, label="Audio_ShaftWhispers")
 
     spawn_ps(unreal.Vector(0, 0, 20), unreal.Rotator(0, -90, 0))
     save_current_level()
-    print("Claustrophobia level rebuilt with violent cable snap physics & suffocation audio.")
+    print("Claustrophobia level rebuilt with rolling cylinder soda can & cable snap physics.")
 
 # ==============================================================================
 # 3. ARACHNOPHOBIA: PHYSICS CHEMICAL VIALS, SHATTERING GLASS & SWARM TERROR
@@ -292,32 +289,41 @@ def upgrade_arachnophobia():
     # 2. Central Steel Lab Table
     spawn_sm("/Game/Geometry/Meshes/1M_Cube", unreal.Vector(0, 110, 40), scale=unreal.Vector(1.4, 0.8, 0.8), mat="/Game/Building/Materials/MI_StdOpaque_Brushed", label="Lab_Examination_Table")
 
-    # 3. Terrarium with REAL PHYSICS LID & BASE
+    # 3. Terrarium with REAL PHYSICS LID & ENCLOSED 4-WALLED GLASS TANK (FIX: Enclosed 4-walled glass box)
     spawn_sm("/Game/Geometry/Meshes/1M_Cube_Chamfer", unreal.Vector(0, 110, 82), scale=unreal.Vector(0.55, 0.55, 0.04), mat="/Game/Building/Materials/MI_StdOpaque_Brushed", label="Terrarium_Base")
-    spawn_sm("/Game/Building/Geometry/SM_FrameWindow", unreal.Vector(0, 110, 105), scale=unreal.Vector(0.26, 0.26, 0.26), mat="/Game/Building/Materials/MI_Simple_Glass_Inst", label="Terrarium_Glass_Cover")
+    glass_mat = "/Game/Building/Materials/MI_Simple_Glass_Inst"
+    # 4 enclosed glass walls forming a complete 3D terrarium box
+    spawn_sm("/Game/Geometry/Meshes/1M_Cube", unreal.Vector(0, 136, 102), scale=unreal.Vector(0.52, 0.015, 0.38), mat=glass_mat, label="Terrarium_Glass_Back")
+    spawn_sm("/Game/Geometry/Meshes/1M_Cube", unreal.Vector(0, 84, 102), scale=unreal.Vector(0.52, 0.015, 0.38), mat=glass_mat, label="Terrarium_Glass_Front")
+    spawn_sm("/Game/Geometry/Meshes/1M_Cube", unreal.Vector(-26, 110, 102), scale=unreal.Vector(0.015, 0.52, 0.38), mat=glass_mat, label="Terrarium_Glass_Left")
+    spawn_sm("/Game/Geometry/Meshes/1M_Cube", unreal.Vector(26, 110, 102), scale=unreal.Vector(0.015, 0.52, 0.38), mat=glass_mat, label="Terrarium_Glass_Right")
     # Physics Glass Lid: Can be bumped or knocked completely off!
-    spawn_sm("/Game/Geometry/Meshes/1M_Cube", unreal.Vector(0, 110, 132), scale=unreal.Vector(0.52, 0.52, 0.03), mat="/Game/Building/Materials/MI_Simple_Glass_Inst", label="Phys_TerrariumLid", sim_physics=True, mass_kg=1.8)
+    spawn_sm("/Game/Geometry/Meshes/1M_Cube", unreal.Vector(0, 110, 122), scale=unreal.Vector(0.55, 0.55, 0.025), mat=glass_mat, label="Phys_TerrariumLid", sim_physics=True, mass_kg=1.8)
 
-    # 4. PHYSICS LAB PROPS ON TABLE (Bottles, flasks, instruments that roll/spill)
+    # 4. PHYSICS LAB PROPS ON TABLE (FIX: Replaced SM_SphereSky with /Engine/BasicShapes/Sphere)
     lab_phys = [
-        ("/Game/Building/Geometry/SM_SphereSky", unreal.Vector(-45, 110, 85), unreal.Vector(0.0003, 0.0003, 0.0005), 0.5, "Phys_ChemicalFlask_Left"),
-        ("/Game/Building/Geometry/SM_SphereSky", unreal.Vector(-30, 85, 85), unreal.Vector(0.00025, 0.00025, 0.0004), 0.4, "Phys_ChemicalFlask_Front"),
+        ("/Engine/BasicShapes/Sphere", unreal.Vector(-45, 110, 85), unreal.Vector(0.14, 0.14, 0.18), 0.5, "Phys_ChemicalFlask_Left"),
+        ("/Engine/BasicShapes/Sphere", unreal.Vector(-30, 85, 85), unreal.Vector(0.11, 0.11, 0.15), 0.4, "Phys_ChemicalFlask_Front"),
         ("/Game/Geometry/Meshes/1M_Cube", unreal.Vector(45, 110, 85), unreal.Vector(0.12, 0.25, 0.08), 1.8, "Phys_MetalSpecimenTray"),
         ("/Game/Geometry/Meshes/1M_Cube", unreal.Vector(40, 80, 85), unreal.Vector(0.2, 0.25, 0.05), 2.2, "Phys_HeavyMedicalBook")
     ]
     for m, loc, scl, mass, lbl in lab_phys:
         spawn_sm(m, loc, scale=scl, mat="/Game/Building/Materials/MI_StdOpaque_Concrete", label=lbl, sim_physics=True, mass_kg=mass)
 
-    # 5. SPIDERS: Swarm surrounding the player
+    # 5. SPIDERS: Swarm surrounding the player (FIX: 4 legs on left (-X), 4 legs on right (+X), true anatomy)
     def spawn_spider(loc, rot=unreal.Rotator(0,0,0), scale=1.0, name_prefix="Spider"):
-        spawn_sm("/Game/Building/Geometry/SM_SphereSky", loc + unreal.Vector(0, 0, 3*scale), scale=unreal.Vector(0.0004*scale, 0.0005*scale, 0.0003*scale), mat="/Game/Building/Materials/MI_Silhouette", label=f"{name_prefix}_Abdomen")
-        spawn_sm("/Game/Building/Geometry/SM_SphereSky", loc + unreal.Vector(0, 3*scale, 2*scale), scale=unreal.Vector(0.00025*scale, 0.00025*scale, 0.0002*scale), mat="/Game/Building/Materials/MI_Silhouette", label=f"{name_prefix}_Head")
-        angles = [-60, -35, -15, 0, 15, 35, 60, 80]
-        for leg_idx, ang in enumerate(angles):
-            rad = math.radians(ang)
-            lx = math.cos(rad) * 6 * scale
-            ly = math.sin(rad) * 6 * scale
-            spawn_sm("/Game/Geometry/Meshes/1M_Cube", loc + unreal.Vector(lx, ly, 1.5*scale), rot=unreal.Rotator(15, ang, 0), scale=unreal.Vector(0.008*scale, 0.06*scale, 0.008*scale), mat="/Game/Building/Materials/MI_Silhouette", label=f"{name_prefix}_Leg_{leg_idx+1}")
+        spawn_sm("/Engine/BasicShapes/Sphere", loc + unreal.Vector(0, 0, 3*scale), scale=unreal.Vector(0.08*scale, 0.1*scale, 0.06*scale), mat="/Game/Building/Materials/MI_Silhouette", label=f"{name_prefix}_Abdomen")
+        spawn_sm("/Engine/BasicShapes/Sphere", loc + unreal.Vector(0, 4.5*scale, 2*scale), scale=unreal.Vector(0.05*scale, 0.05*scale, 0.04*scale), mat="/Game/Building/Materials/MI_Silhouette", label=f"{name_prefix}_Head")
+        # 4 legs on left (-X) and 4 legs on right (+X)
+        leg_idx = 0
+        for side in [-1, 1]:  # -1 = Left side, +1 = Right side
+            for ang in [-50, -20, 20, 50]:
+                leg_idx += 1
+                rad = math.radians(ang)
+                lx = side * (math.cos(rad) * 6.0 * scale + 1.2 * scale)
+                ly = math.sin(rad) * 6.0 * scale
+                leg_rot = unreal.Rotator(15, side * (90 - ang), 0)
+                spawn_sm("/Game/Geometry/Meshes/1M_Cube", loc + unreal.Vector(lx, ly, 1.5*scale), rot=leg_rot, scale=unreal.Vector(0.008*scale, 0.06*scale, 0.008*scale), mat="/Game/Building/Materials/MI_Silhouette", label=f"{name_prefix}_Leg_{leg_idx}")
 
     # Terrarium Specimen
     spawn_spider(unreal.Vector(0, 110, 85), scale=1.0, name_prefix="Spider_Terrarium")
@@ -326,7 +332,7 @@ def upgrade_arachnophobia():
     # Giant spider crawling on back wall
     spawn_spider(unreal.Vector(-80, 340, 160), rot=unreal.Rotator(90, 0, 0), scale=2.2, name_prefix="Spider_Wall_Giant1")
     spawn_spider(unreal.Vector(120, 340, 210), rot=unreal.Rotator(90, 0, 0), scale=1.8, name_prefix="Spider_Wall_Giant2")
-    # Spiders hanging down from the ceiling directly above player's head!
+    # Spider hanging down from ceiling directly above player's head
     spawn_spider(unreal.Vector(0, 30, 175), rot=unreal.Rotator(180, 0, 0), scale=1.5, name_prefix="Spider_Ceiling_Dangler")
     spawn_sm("/Game/Geometry/Meshes/1M_Cube", unreal.Vector(0, 30, 245), scale=unreal.Vector(0.002, 0.002, 1.4), mat="/Game/Building/Materials/MI_Simple_Chrome", label="Spider_Silk_Thread")
 
@@ -334,7 +340,7 @@ def upgrade_arachnophobia():
     spawn_grabbable(unreal.Vector(-30, 80, 85), label="Lab_Flashlight_Grabbable")
     spawn_grabbable(unreal.Vector(50, 75, 85), label="Lab_PanicBell_Grabbable")
 
-    # 7. Flickering Light & Terrifying Chitin Swarm Frenzy Audio
+    # 7. Lighting & Audio
     spawn_spot(unreal.Vector(0, 110, 270), unreal.Rotator(-75, 0, 0), intensity=12000.0, color=unreal.LinearColor(0.85, 0.9, 0.8, 1.0), outer_angle=35.0, label="Desk_FlickerSpotlight")
     spawn_snd("/Game/PhobiaVR/Audio/A_Spider_Swarm_Frenzy", unreal.Vector(0, 110, 85), vol=1.0, label="Audio_SpiderSwarmFrenzy")
     spawn_snd("/Game/PhobiaVR/Audio/A_Horror_Drone_Ominous", unreal.Vector(0, 0, 150), vol=0.8, label="Audio_LabDreadDrone")
@@ -342,7 +348,7 @@ def upgrade_arachnophobia():
 
     spawn_ps(unreal.Vector(0, 0, 20), unreal.Rotator(0, 90, 0))
     save_current_level()
-    print("Arachnophobia level rebuilt with physics props & chitin swarm frenzy.")
+    print("Arachnophobia level rebuilt with 4-walled glass terrarium & anatomical 8-legged spiders.")
 
 # ==============================================================================
 # 4. GLOSSOPHOBIA: NIGHTMARE AUDITORIUM, FLUTTERING SPEECH NOTES & PARANOIA
@@ -362,7 +368,6 @@ def upgrade_glossophobia():
     spawn_sm("/Game/Building/Geometry/SM_FrameWindow", unreal.Vector(0, 140, 130), rot=unreal.Rotator(-25, 0, 0), scale=unreal.Vector(0.35, 0.35, 0.2), mat="/Game/XRFramework/Materials/MI_Grid_Accent", label="Teleprompter_Monitor")
 
     # 3. REAL PHYSICS FLUTTERING SPEECH CUE CARDS
-    # If the user brushes past the podium, these papers scatter and slide off the edge with physics!
     paper_coords = [
         (unreal.Vector(-15, 115, 122), unreal.Rotator(0, 12, 0), "Phys_SpeechPage_1"),
         (unreal.Vector(0, 118, 123), unreal.Rotator(0, -5, 0), "Phys_SpeechPage_2"),
@@ -372,14 +377,16 @@ def upgrade_glossophobia():
     for loc, rot, lbl in paper_coords:
         spawn_sm("/Game/Geometry/Meshes/1M_Cube", loc, rot=rot, scale=unreal.Vector(0.18, 0.25, 0.005), mat="/Game/Building/Materials/MI_StdOpaque_Brushed", label=lbl, sim_physics=True, mass_kg=0.08)
 
-    # Physics water cup on podium edge that can be knocked over!
-    spawn_sm("/Game/Building/Geometry/SM_SphereSky", unreal.Vector(25, 130, 125), scale=unreal.Vector(0.0002, 0.0002, 0.0003), mat="/Game/Building/Materials/MI_Simple_Glass_Inst", label="Phys_WaterGlass_Podium", sim_physics=True, mass_kg=0.4)
+    # Physics water cup on podium edge (FIX: Replaced SM_SphereSky with /Engine/BasicShapes/Cylinder)
+    spawn_sm("/Engine/BasicShapes/Cylinder", unreal.Vector(25, 130, 125), scale=unreal.Vector(0.08, 0.08, 0.14), mat="/Game/Building/Materials/MI_Simple_Glass_Inst", label="Phys_WaterGlass_Podium", sim_physics=True, mass_kg=0.4)
 
-    # 4. Blinding Glaring Stage Spotlights casting grotesque elongated shadows
-    spawn_spot(unreal.Vector(-220, 500, 450), unreal.Rotator(-42, -112, 0), intensity=65000.0, color=unreal.LinearColor(1.0, 0.96, 0.9, 1.0), outer_angle=26.0, inner_angle=12.0, label="Spotlight_StageGlare_Left")
-    spawn_spot(unreal.Vector(220, 500, 450), unreal.Rotator(-42, -68, 0), intensity=65000.0, color=unreal.LinearColor(1.0, 0.96, 0.9, 1.0), outer_angle=26.0, inner_angle=12.0, label="Spotlight_StageGlare_Right")
+    # 4. Blinding Glaring Stage Spotlights aimed directly at the player (FIX: Swapped & calculated correct yaws)
+    # Target: Player at (0, 60, 120). Light Left at (-220, 500, 450) -> dx=+220, dy=-440 => yaw = atan2(-440, 220) = -63.4 deg
+    # Light Right at (220, 500, 450) -> dx=-220, dy=-440 => yaw = atan2(-440, -220) = -116.6 deg
+    spawn_spot(unreal.Vector(-220, 500, 450), unreal.Rotator(-41.2, -63.4, 0.0), intensity=65000.0, color=unreal.LinearColor(1.0, 0.96, 0.9, 1.0), outer_angle=26.0, inner_angle=12.0, label="Spotlight_StageGlare_Left")
+    spawn_spot(unreal.Vector(220, 500, 450), unreal.Rotator(-41.2, -116.6, 0.0), intensity=65000.0, color=unreal.LinearColor(1.0, 0.96, 0.9, 1.0), outer_angle=26.0, inner_angle=12.0, label="Spotlight_StageGlare_Right")
 
-    # 5. Sinister Audience Silhouettes in the Pitch Black Theater
+    # 5. Sinister Audience Silhouettes in the Pitch Black Theater (FIX: Look rot calculated with exact atan2)
     row_distances = [420, 680, 940, 1200]
     row_heights = [-40, 10, 65, 120]
     silhouette_mesh = "/Game/Building/Geometry/SM_SilhouetteWomen"
@@ -395,18 +402,22 @@ def upgrade_glossophobia():
             sy = math.cos(rad) * r_dist
             
             spawn_sm("/Game/Geometry/Meshes/1M_Cube", unreal.Vector(sx, sy, r_height), scale=unreal.Vector(0.5, 0.5, 0.5), label=f"Seat_R{r_idx}_S{a_idx}")
-            look_rot = unreal.Rotator(0, 180 - angle, 0)
+            # Target player is at X=0, Y=60
+            dx = 0.0 - sx
+            dy = 60.0 - sy
+            look_yaw = math.degrees(math.atan2(dy, dx))
+            look_rot = unreal.Rotator(0, look_yaw, 0)
             spawn_sm(silhouette_mesh, unreal.Vector(sx, sy, r_height + 30), rot=look_rot, scale=unreal.Vector(1.0, 1.0, 1.0), mat="/Game/Building/Materials/MI_Silhouette", label=f"ShadowAudience_{seat_idx+1}")
             seat_idx += 1
 
-    # 6. Eerie Paranoia Whispers & Tachycardia Panic Audio
+    # 6. Audio Suite
     spawn_snd("/Game/PhobiaVR/Audio/A_Whispers_Paranoia_Loop", unreal.Vector(0, 700, 50), vol=1.0, label="Audio_ParanoiaWhispers")
     spawn_snd("/Game/PhobiaVR/Audio/A_Tachycardia_Suffocation", unreal.Vector(0, 60, 120), vol=0.9, label="Audio_StagePanicHeartbeat")
     spawn_snd("/Game/PhobiaVR/Audio/A_Horror_Drone_Ominous", unreal.Vector(0, 300, 150), vol=0.75, label="Audio_NightmareDrone")
 
     spawn_ps(unreal.Vector(0, 60, 20), unreal.Rotator(0, 90, 0))
     save_current_level()
-    print("Glossophobia level rebuilt with scattering physics cue cards & paranoia whispers.")
+    print("Glossophobia level rebuilt with aligned stage glare & atan2 audience stare tracking.")
 
 if __name__ == "__main__":
     upgrade_acrophobia()

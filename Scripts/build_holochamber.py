@@ -150,7 +150,7 @@ spawn_snd("/Game/PhobiaVR/Audio/A_Nyctophobia_Whispering_Dark", unreal.Vector(-6
 holodeck_props = [
     ("/Game/Geometry/Meshes/1M_Cube_Chamfer", unreal.Vector(-150, 200, 30), unreal.Vector(0.3, 0.3, 0.3), 5.0, "Phys_Holodeck_Cube1"),
     ("/Game/Geometry/Meshes/1M_Cube_Chamfer", unreal.Vector(150, 200, 30), unreal.Vector(0.3, 0.3, 0.3), 5.0, "Phys_Holodeck_Cube2"),
-    ("/Game/Building/Geometry/SM_SphereSky", unreal.Vector(0, 100, 30), unreal.Vector(0.0003, 0.0003, 0.0003), 2.0, "Phys_Holodeck_Sphere"),
+    ("/Engine/BasicShapes/Sphere", unreal.Vector(0, 100, 30), unreal.Vector(0.35, 0.35, 0.35), 2.0, "Phys_Holodeck_Sphere"),
     ("/Game/Geometry/Meshes/1M_Cube", unreal.Vector(250, 100, 20), unreal.Vector(0.2, 0.6, 0.1), 8.0, "Phys_Holodeck_Barricade")
 ]
 for m, loc, scl, mass, lbl in holodeck_props:
