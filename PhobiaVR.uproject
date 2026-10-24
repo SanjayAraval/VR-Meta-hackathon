@@ -3,6 +3,13 @@
 	"EngineAssociation": "5.8",
 	"Category": "Virtual Reality",
 	"Description": "PhobiaVR - Immersive 3D Exposure Therapy Simulator for Meta Quest VR",
+	"Modules": [
+		{
+			"Name": "PhobiaVR",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
 	"Plugins": [
 		{
 			"Name": "OpenXR",
